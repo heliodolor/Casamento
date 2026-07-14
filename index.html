@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Milena & Hélio</title>
+<meta name="description" content="Convite de casamento de Milena Chagas e Hélio Dolor — 15 de agosto">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg-main:#F8F3EA;
+    --bg-soft:#FCF9F3;
+    --gold:#B18438;
+    --gold-light:#C9A66B;
+    --olive:#313326;
+    --text-main:#2B2A27;
+    --text-soft:#5A564E;
+    --hairline: rgba(177,132,56,0.32);
+    --section-space: clamp(72px, 12vw, 132px);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:
+      radial-gradient(ellipse 900px 500px at 8% 4%, rgba(201,166,107,0.10), transparent 55%),
+      radial-gradient(ellipse 900px 600px at 95% 96%, rgba(177,132,56,0.09), transparent 55%),
+      var(--bg-main);
+    color:var(--text-main);
+    font-family:'Cormorant Garamond', serif;
+    font-size:19px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+
+  .paper-texture{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    opacity:0.45;
+    mix-blend-mode:multiply;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.011) 0px, rgba(0,0,0,0.011) 1px, transparent 1px, transparent 3px),
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.011) 0px, rgba(0,0,0,0.011) 1px, transparent 1px, transparent 3px);
+  }
+
+  .wrap{
+    position:relative;
+    z-index:1;
+    max-width:600px;
+    margin:0 auto;
+    padding:0 30px;
+  }
+
+  section{ padding-top:var(--section-space); }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 1.1s cubic-bezier(.22,.61,.36,1), transform 1.1s cubic-bezier(.22,.61,.36,1);
+  }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+
+  .reveal.delay-1{ transition-delay:.05s; }
+  .reveal.delay-2{ transition-delay:.22s; }
+  .reveal.delay-3{ transition-delay:.4s; }
+  .reveal.delay-4{ transition-delay:.58s; }
+
+  /* hero elements animate on page load, not on scroll */
+  .load-in{
+    opacity:0;
+    transform:translateY(16px);
+    animation:riseIn 1.1s cubic-bezier(.22,.61,.36,1) forwards;
+  }
+  .load-in.delay-1{ animation-delay:.05s; }
+  .load-in.delay-2{ animation-delay:.25s; }
+  .load-in.delay-3{ animation-delay:.45s; }
+  .load-in.delay-4{ animation-delay:.65s; }
+
+  @keyframes riseIn{ to{ opacity:1; transform:translateY(0); } }
+
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration:0.001ms !important;
+      transition-duration:0.001ms !important;
+      scroll-behavior:auto !important;
+    }
+    .reveal{ opacity:1; transform:none; }
+    .load-in{ opacity:1; transform:none; animation:none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding-top:clamp(64px, 12vw, 108px);
+    text-align:center;
+  }
+
+  .monogram{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:11px;
+    font-family:'Playfair Display', serif;
+    font-size:20px;
+    letter-spacing:7px;
+    color:var(--gold);
+    font-weight:500;
+  }
+  .monogram .sep{
+    width:1px;
+    height:15px;
+    background:var(--gold-light);
+    display:inline-block;
+  }
+
+  .sprig{
+    display:block;
+    margin:16px auto 4px;
+    width:84px;
+    height:auto;
+  }
+  .sprig path{
+    stroke-dasharray:220;
+    stroke-dashoffset:220;
+    transition:stroke-dashoffset 1.6s ease;
+  }
+  .sprig.in-view path{ stroke-dashoffset:0; }
+
+  .names{ margin-top:26px; }
+
+  .first-name{
+    font-family:'Playfair Display', serif;
+    font-weight:500;
+    font-size:clamp(37px, 9vw, 58px);
+    letter-spacing:7px;
+    text-transform:uppercase;
+    color:var(--text-main);
+    line-height:1.12;
+  }
+
+  .last-name{
+    font-family:'Great Vibes', cursive;
+    font-size:clamp(40px, 10vw, 64px);
+    color:var(--gold);
+    line-height:1.3;
+    margin-top:-4px;
+  }
+
+  .amp-row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    margin:16px 0;
+  }
+  .amp-row .line{ width:46px; height:1px; background:var(--hairline); }
+  .amp-row .e{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:19px;
+    color:var(--text-soft);
+    letter-spacing:2px;
+  }
+
+  .heart-divider{ margin:32px auto 0; width:13px; height:13px; }
+  .heart-divider svg{ width:100%; height:100%; }
+
+  /* ---------- INTRO ---------- */
+  .intro{ text-align:center; max-width:470px; margin:0 auto; }
+  .intro p{
+    font-size:clamp(18px, 2.6vw, 20px);
+    color:var(--text-soft);
+    font-style:italic;
+    line-height:1.95;
+  }
+
+  /* ---------- DIVIDER ---------- */
+  .divider-orn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    margin:var(--section-space) auto 0;
+  }
+  .divider-orn .stem{ width:64px; height:1px; background:linear-gradient(90deg, transparent, var(--gold-light)); }
+  .divider-orn .stem.right{ background:linear-gradient(90deg, var(--gold-light), transparent); }
+  .divider-orn .dot{ width:5px; height:5px; border-radius:50%; background:var(--gold); opacity:0.8; }
+
+  /* ---------- DADOS ---------- */
+  .details{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:48px;
+    text-align:center;
+  }
+
+  @media (min-width:640px){
+    .details{ flex-direction:row; justify-content:center; align-items:stretch; gap:0; }
+    .detail-block{ flex:1; padding:0 28px; position:relative; }
+    .detail-block + .detail-block::before{
+      content:"";
+      position:absolute;
+      left:0; top:6px; bottom:6px;
+      width:1px;
+      background:var(--hairline);
+    }
+  }
+
+  .detail-block{ display:flex; flex-direction:column; align-items:center; gap:13px; }
+
+  .detail-eyebrow{
+    font-family:'Playfair Display', serif;
+    font-size:11px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:var(--gold-light);
+  }
+
+  .detail-icon{ width:28px; height:28px; }
+  .detail-icon svg{ width:100%; height:100%; stroke:var(--gold); fill:none; }
+
+  .detail-main{
+    font-family:'Playfair Display', serif;
+    font-weight:500;
+    font-size:22px;
+    letter-spacing:0.5px;
+    color:var(--text-main);
+  }
+  .detail-sub{
+    font-size:15px;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    color:var(--text-soft);
+  }
+  .detail-address{
+    font-size:15.5px;
+    color:var(--text-soft);
+    max-width:210px;
+    line-height:1.65;
+  }
+
+  /* ---------- CONFIRMAÇÃO ---------- */
+  .callout{ text-align:center; max-width:460px; margin:0 auto; }
+  .callout p{
+    font-size:clamp(18px, 2.5vw, 20px);
+    color:var(--text-soft);
+    line-height:1.95;
+  }
+  .callout .question{
+    margin-top:22px;
+    font-family:'Playfair Display', serif;
+    font-style:normal;
+    font-size:clamp(19px, 2.6vw, 22px);
+    color:var(--text-main);
+    letter-spacing:0.3px;
+  }
+
+  .cta-area{ text-align:center; padding-top:44px; }
+
+  .btn-cta{
+    display:inline-block;
+    background:var(--olive);
+    color:var(--bg-soft);
+    font-family:'Playfair Display', serif;
+    font-weight:500;
+    font-size:15.5px;
+    letter-spacing:3.6px;
+    text-decoration:none;
+    padding:20px 50px;
+    border:1px solid var(--gold-light);
+    border-radius:1px;
+    box-shadow:0 6px 26px rgba(49,51,38,0.18);
+    transition:background .4s ease, transform .4s ease, box-shadow .4s ease, letter-spacing .4s ease;
+  }
+  .btn-cta:hover, .btn-cta:focus-visible{
+    background:#3d402f;
+    transform:translateY(-2px);
+    letter-spacing:4.2px;
+    box-shadow:0 10px 32px rgba(49,51,38,0.25);
+  }
+  .btn-cta:focus-visible{ outline:2px solid var(--gold); outline-offset:4px; }
+
+  .fallback-link{ margin-top:18px; font-size:14.5px; color:var(--text-soft); }
+  .fallback-link a{
+    color:var(--gold);
+    text-decoration:underline;
+    text-underline-offset:3px;
+    transition:color .3s ease;
+  }
+  .fallback-link a:hover, .fallback-link a:focus-visible{ color:var(--olive); }
+
+  /* ---------- VERSÍCULO ---------- */
+  .verse-wrap{ position:relative; margin-top:var(--section-space); }
+
+  .verse-frame{
+    border:1px solid var(--gold-light);
+    padding:clamp(40px, 7vw, 62px) clamp(26px, 6vw, 54px);
+    position:relative;
+    background:var(--bg-soft);
+  }
+  .verse-frame::before{
+    content:"";
+    position:absolute;
+    inset:9px;
+    border:1px solid rgba(177,132,56,0.2);
+    pointer-events:none;
+  }
+
+  .verse-mark{
+    text-align:center;
+    font-family:'Playfair Display', serif;
+    font-size:38px;
+    color:var(--gold-light);
+    line-height:1;
+    margin-bottom:6px;
+  }
+
+  .verse-title{
+    text-align:center;
+    font-family:'Playfair Display', serif;
+    font-size:15px;
+    letter-spacing:4px;
+    color:var(--gold);
+    text-transform:uppercase;
+    margin-bottom:28px;
+  }
+
+  .verse-text{
+    text-align:center;
+    font-style:italic;
+    color:var(--text-main);
+    font-size:clamp(18px, 2.6vw, 20.5px);
+    line-height:2.1;
+  }
+
+  /* ---------- ENCERRAMENTO ---------- */
+  .final{ text-align:center; padding-bottom:var(--section-space); }
+  .final .heart-divider{ margin-bottom:30px; }
+
+  .final-label{ font-size:16.5px; letter-spacing:1px; color:var(--text-soft); font-style:italic; }
+
+  .final-names{
+    font-family:'Great Vibes', cursive;
+    font-size:clamp(30px, 6vw, 40px);
+    color:var(--gold);
+    margin-top:10px;
+    line-height:1.5;
+  }
+  .final-amp{
+    display:block;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:18px;
+    color:var(--text-soft);
+    margin:4px 0;
+  }
+
+  .contemplative{
+    margin-top:56px;
+    max-width:420px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .contemplative .verse-line{
+    font-size:18px;
+    font-style:italic;
+    color:var(--text-main);
+    line-height:2.3;
+    opacity:0;
+    transform:translateY(10px);
+    transition:opacity 1s ease, transform 1s ease;
+  }
+  .contemplative .verse-line.in-view{ opacity:1; transform:translateY(0); }
+  .contemplative .verse-line:nth-child(1){ transition-delay:.05s; }
+  .contemplative .verse-line:nth-child(2){ transition-delay:.25s; }
+  .contemplative .verse-line:nth-child(3){ transition-delay:.45s; }
+  .contemplative .verse-line:nth-child(4){ transition-delay:.65s; }
+
+  .contemplative .ref{
+    display:block;
+    margin-top:20px;
+    font-size:13.5px;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-style:normal;
+  }
+
+  /* ---------- SIDE VINE (desktop only, restrained signature element) ---------- */
+  .side-vine{
+    position:fixed;
+    top:0; right:0;
+    height:100vh;
+    width:54px;
+    z-index:0;
+    opacity:0.3;
+    pointer-events:none;
+  }
+  .side-vine svg{ width:100%; height:100%; }
+  @media (max-width:960px){ .side-vine{ display:none; } }
+
+  footer.spacer{ height:24px; }
+</style>
+</head>
+<body>
+
+<div class="paper-texture" aria-hidden="true"></div>
+
+<div class="side-vine" aria-hidden="true">
+  <svg viewBox="0 0 54 800" xmlns="http://www.w3.org/2000/svg">
+    <path d="M27 0 C31 90 23 180 29 270 C35 360 21 450 27 540 C33 630 23 720 27 800" stroke="#B18438" stroke-width="1" fill="none"/>
+    <path d="M27 90 C39 84 49 88 54 78" stroke="#C9A66B" stroke-width="1" fill="none"/>
+    <path d="M28 220 C16 214 6 218 0 208" stroke="#C9A66B" stroke-width="1" fill="none"/>
+    <path d="M29 360 C41 354 51 358 54 348" stroke="#C9A66B" stroke-width="1" fill="none"/>
+    <path d="M25 500 C13 494 3 498 0 488" stroke="#C9A66B" stroke-width="1" fill="none"/>
+    <path d="M27 640 C39 634 49 638 54 628" stroke="#C9A66B" stroke-width="1" fill="none"/>
+  </svg>
+</div>
+
+<main class="wrap">
+
+  <!-- TOPO -->
+  <section class="hero">
+    <div class="monogram load-in delay-1">
+      <span>M</span><span class="sep" aria-hidden="true"></span><span>H</span>
+    </div>
+
+    <svg class="sprig load-in delay-1 in-view" viewBox="0 0 100 40" aria-hidden="true">
+      <path d="M50 30 C50 20 50 12 50 4" stroke="#B18438" stroke-width="1" fill="none"/>
+      <path d="M50 10 C40 6 32 8 26 4" stroke="#C9A66B" stroke-width="1" fill="none"/>
+      <path d="M50 16 C60 12 68 14 74 10" stroke="#C9A66B" stroke-width="1" fill="none"/>
+      <path d="M50 22 C41 19 34 21 28 18" stroke="#C9A66B" stroke-width="1" fill="none"/>
+      <path d="M50 26 C59 23 66 25 72 22" stroke="#C9A66B" stroke-width="1" fill="none"/>
+    </svg>
+
+    <div class="names">
+      <div class="first-name load-in delay-2">Milena</div>
+      <div class="last-name load-in delay-3">Chagas</div>
+
+      <div class="amp-row load-in delay-3">
+        <span class="line" aria-hidden="true"></span>
+        <span class="e">e</span>
+        <span class="line" aria-hidden="true"></span>
+      </div>
+
+      <div class="first-name load-in delay-4">Hélio</div>
+      <div class="last-name load-in delay-4">Dolor</div>
+    </div>
+
+    <div class="heart-divider load-in delay-4" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.1 2.5 4.5 6 4.2c2-.2 3.7 1 4.5 2.7C11.3 5.2 13 4 15 4.2c3.5.3 5.5 3.9 4 7.5C19.5 16.4 12 21 12 21z" fill="#B18438"/></svg>
+    </div>
+  </section>
+
+  <!-- TEXTO PRINCIPAL -->
+  <section class="intro">
+    <p class="reveal">
+      Para celebrarmos nosso casamento,<br>
+      queremos brindar a fidelidade de Deus<br>
+      e ao amor que Ele escreveu em nossa história.<br>
+      Sua presença será um presente para nós.
+    </p>
+  </section>
+
+  <div class="divider-orn reveal" aria-hidden="true">
+    <span class="stem" aria-hidden="true"></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="stem right" aria-hidden="true"></span>
+  </div>
+
+  <!-- DADOS -->
+  <section>
+    <div class="details">
+      <div class="detail-block reveal delay-1">
+        <span class="detail-eyebrow">Data</span>
+        <div class="detail-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5" stroke-width="1.2"/><path d="M3 9.5h18" stroke-width="1.2"/><path d="M8 3v4M16 3v4" stroke-width="1.2" stroke-linecap="round"/><path d="M9.5 14l1.6 1.6L14.5 12" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="detail-main">15 de Agosto</div>
+        <div class="detail-sub">Sábado</div>
+      </div>
+
+      <div class="detail-block reveal delay-2">
+        <span class="detail-eyebrow">Horário</span>
+        <div class="detail-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="1.2"/><path d="M12 7v5l3.5 2" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="detail-main">18h00</div>
+        <div class="detail-sub">Chegada</div>
+      </div>
+
+      <div class="detail-block reveal delay-3">
+        <span class="detail-eyebrow">Local</span>
+        <div class="detail-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z" stroke-width="1.2"/><circle cx="12" cy="9" r="2.4" stroke-width="1.2"/></svg>
+        </div>
+        <div class="detail-main">Recanto TOATOA</div>
+        <div class="detail-address">Rua Jacques Demolay, 240</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-orn reveal" aria-hidden="true">
+    <span class="stem" aria-hidden="true"></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="stem right" aria-hidden="true"></span>
+  </div>
+
+  <!-- CONFIRMAÇÃO -->
+  <section class="callout">
+    <p class="reveal">
+      Será uma alegria celebrar este momento<br>
+      ao lado daqueles que ocupam um lugar<br>
+      especial em nossa história.
+    </p>
+    <p class="question reveal delay-1">Você poderá estar conosco?</p>
+  </section>
+
+  <section class="cta-area">
+    <a
+      class="btn-cta reveal delay-2"
+      id="confirmBtn"
+      href="https://forms.gle/6ZQBgdWt2dXmuiZ38"
+      target="_blank"
+      rel="noopener noreferrer"
+    >Confirmar Presença</a>
+
+    <p class="fallback-link reveal delay-3">
+      Caso o botão não funcione,
+      <a href="https://forms.gle/6ZQBgdWt2dXmuiZ38" target="_blank" rel="noopener noreferrer">clique aqui</a>.
+    </p>
+  </section>
+
+  <!-- VERSÍCULO -->
+  <section>
+    <div class="verse-wrap reveal">
+      <div class="verse-frame">
+        <div class="verse-mark" aria-hidden="true">&#8220;</div>
+        <div class="verse-title">1 Coríntios 13:4&ndash;7</div>
+        <p class="verse-text">
+          O amor é paciente, o amor é bondoso.<br>
+          Não inveja, não se vangloria, não se orgulha.<br>
+          Não maltrata, não procura seus interesses,<br>
+          não se ira facilmente, não guarda rancor.<br>
+          O amor não se alegra com a injustiça,<br>
+          mas se alegra com a verdade.<br>
+          Tudo sofre, tudo crê, tudo espera, tudo suporta.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENCERRAMENTO -->
+  <section class="final">
+    <div class="divider-orn reveal" aria-hidden="true" style="margin-bottom:var(--section-space);">
+      <span class="stem" aria-hidden="true"></span>
+      <span class="dot" aria-hidden="true"></span>
+      <span class="stem right" aria-hidden="true"></span>
+    </div>
+
+    <div class="heart-divider reveal" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.1 2.5 4.5 6 4.2c2-.2 3.7 1 4.5 2.7C11.3 5.2 13 4 15 4.2c3.5.3 5.5 3.9 4 7.5C19.5 16.4 12 21 12 21z" fill="#B18438"/></svg>
+    </div>
+
+    <div class="final-label reveal">Com carinho,</div>
+    <div class="final-names reveal delay-1">
+      Milena Chagas
+      <span class="final-amp">&amp;</span>
+      Hélio Dolor
+    </div>
+
+    <div class="contemplative">
+      <p class="verse-line">Para que todos vejam,</p>
+      <p class="verse-line">e saibam,</p>
+      <p class="verse-line">e considerem,</p>
+      <p class="verse-line">e juntamente entendam<br>que a mão do Senhor fez isto.<span class="ref">Isaías 41:20</span></p>
+    </div>
+  </section>
+
+  <footer class="spacer" aria-hidden="true"></footer>
+</main>
+
+<script>
+  // Confirmação extra de que o botão abre o formulário em nova aba
+  document.getElementById('confirmBtn').addEventListener('click', function(e){
+    var url = 'https://forms.gle/6ZQBgdWt2dXmuiZ38';
+    if (!this.href) {
+      e.preventDefault();
+      window.open(url, '_blank', 'noopener');
+    }
+  });
+
+  // Reveal on scroll, respeitando prefers-reduced-motion
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduceMotion) {
+    document.querySelectorAll('.reveal, .sprig, .verse-line').forEach(function(el){
+      el.classList.add('in-view');
+    });
+  } else if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal:not(.in-view), .sprig:not(.in-view), .verse-line').forEach(function(el){
+      observer.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.reveal, .sprig, .verse-line').forEach(function(el){
+      el.classList.add('in-view');
+    });
+  }
+</script>
+
+</body>
+</html>
